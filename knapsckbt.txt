@@ -1,0 +1,61 @@
+#include<stdio.h>
+int max=-1;
+void sos(int k,int n,int a[],int s,int wt[],int val[])
+{ 
+ int i;
+ if(k==n)
+ { 
+     int sum=0;
+     int l;
+     for(l=0;l<n;l++)
+      { 
+        if(a[l]==1)
+         sum=sum+wt[l];
+      }
+     if(sum<=s)
+     { 
+       int value;
+        value=0;
+       
+       for(l=0;l<n;l++)
+       { 
+         if(a[l]==1)
+          value=value+val[l];
+       }
+        
+        if(value>max)
+        max=value;
+     
+     }
+     return;
+  }
+    
+  for(i=0;i<2;i++)
+  { 
+    a[k]=i;
+    sos(k+1,n,a,s,wt,val);
+  }
+}
+  
+int main()
+{ 
+  int n;
+  printf("enter n");
+  scanf("%d",&n);
+  int wt[n];
+  int val[n];
+  int i;
+  printf("enter weights");
+  for(i=0;i<n;i++)
+  scanf("%d",&wt[i]);
+  printf("enter values");
+  for(i=0;i<n;i++)
+  scanf("%d",&val[i]);
+  int s;
+  printf("enter sum");
+  scanf("%d",&s);
+  int a[n];
+  sos(0,n,a,s,wt,val);
+  printf("max value is %d ",max);
+ }
+  

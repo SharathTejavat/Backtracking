@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<math.h>
+int issafe(int k,int i,int a[])
+{ 
+ int l;
+ for(l=0;l<k;l++)
+  { 
+    if(a[l]==i||abs(k-l)==abs(i-a[l]))
+    return 0;
+  }
+  return 1;
+}
+    
+void nqueen(int k,int n,int a[])
+{ 
+  int i;
+  if(k==n)
+  { printf("\n"); 
+    int m;
+    for(m=0;m<n;m++)
+    printf("%d ",a[m]);
+    return;
+  }
+  for(i=0;i<n;i++)
+  { 
+    if(issafe(k,i,a))
+     { 
+        a[k]=i;
+       nqueen(k+1,n,a);
+     }
+       
+   }
+ }
+int main()
+{ int n,i;
+printf("enter n");
+scanf("%d",&n);
+int a[n];
+for(i=0;i<n;i++)
+a[i]=0;
+nqueen(0,n,a);
+}
